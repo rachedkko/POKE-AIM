@@ -34,8 +34,8 @@ def reset(g):
     g[5] = False
 
 clientnb=0
-server="192.168.1.44"
-port=50
+server="192.168.1.23"
+port=50000
 s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 
 
@@ -93,15 +93,15 @@ def thread(conn,p):
                 reply = str.encode(str(g))
 
 
-                if len(reply)>60:
-                    while 60 - len(reply) != 0:
-                        g[6]="0"
-                        reply = str.encode(str(g))
-                        print(len(reply))
-                elif len(reply)<60:
-                    while 60-len(reply)!=0:
-                        g[6]+="0"
-                        reply= str.encode(str(g))
+                # if len(reply)>60:
+                #     while 60 - len(reply) != 0:
+                #         g[6]="0"
+                #         reply = str.encode(str(g))
+                #         print("Tourne en boucle", len(reply))
+                # elif len(reply)<60:
+                #     while 60-len(reply)!=0:
+                #         g[6]+="0"
+                #         reply= str.encode(str(g))
                 conn.sendall(reply)
 
             elif data!="get" and not "g" in data:
